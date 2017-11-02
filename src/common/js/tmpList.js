@@ -38,4 +38,4 @@ var tmpList = {
   }
 }
 
-export default tmpList
+module.exports = tmpList

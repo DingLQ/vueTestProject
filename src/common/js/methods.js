@@ -58,3 +58,11 @@ var updateById = function (id, element, obj) {
 var checkRule = function (id, obj) {
   return obj
 }
+
+module.exports = {
+  searchById: searchById,
+  addById: addById,
+  deleteById: deleteById,
+  updateById: updateById,
+  checkRule: checkRule
+}
