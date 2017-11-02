@@ -47,3 +47,14 @@ var addById = function (id, type, obj) {
 var updateById = function (id, element, obj) {
   return 0
 }
+
+/**
+ * checkRule该模块用作对源数据的规则修改
+ * @function
+ * @param {string} id - 目标对象的id
+ * @param {object} obj - 传入的数据对象
+ * @returns {object} - rule修改过后的对象
+ */
+var checkRule = function (id, obj) {
+  return obj
+}
