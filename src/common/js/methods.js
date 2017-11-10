@@ -5,12 +5,46 @@
 /**
  * searchByid函数的功能是根据id再目标元素中搜索相应的子组件
  * @function
- * @param {string} id - 目标对象的id
+ * @param {string} id - 目标对象的id 例 ‘0d1p1’
  * @param {object} obj - 数据对象
  * @returns {object} - 目标对象
  */
 var searchById = function (id, obj) {
-  return obj
+  // 解析id number为数字，letter为字母
+  var number = id.match(/\d+/g)
+  var letter = id.match(/[A-z]+/g)
+  // 目标对象
+  var goalObj = {}
+
+  // 根据number数组判断目标对象属性
+  if (number.length === 1) {
+    return obj
+  } else if (number.length === 2) {
+    // 根据id取得对象
+    for (goalObj of obj.childNode) {
+      if (goalObj.id === id) {
+        break
+      }
+    }
+  } else {
+    // 父元素
+    var fObj = {}
+
+    // 获取父元素id
+    var fId = number[0] + letter[0] + number[1]
+
+    // 根据id取得对象
+    for (fObj of obj.childNode) {
+      if (fObj.id === fId) {
+        for (goalObj of fObj.childNode) {
+          if (goalObj.id === id) {
+            break
+          }
+        }
+      }
+    }
+  }
+  return goalObj
 }
 
 /**
