@@ -2,6 +2,9 @@
 // author: dlq
 // description:初始版本，代码结构考虑不完善，以现在的方式，应该会比较耗资源。
 
+// 加载工具函数
+var toolFun = require('tool.js')
+
 var methods = {
   /**
    * searchByid函数的功能是根据id再目标元素中搜索相应的子组件
@@ -105,24 +108,30 @@ var methods = {
   addById: function (id, newData, obj) {
     // 解析id number为数字，letter为字母
     var numberList = id.match(/\d+/g)
-    var letterList = id.match(/[A-z]+/g)
+    // 获取父元素最后一个子元素id
+    var lastId = obj.childNode[obj.childNode.length - 1].id
+    // 子元素id最后的数字字符串
+    var lastIdNumberList = lastId.match(/\d+/g)
+    // 字符串转成数字
+    var lastNumber = parseInt(lastIdNumberList[lastIdNumberList.length - 1])
 
     // 根据number数组判断目标对象属性
     if (numberList.length === 1) {
       if (obj.childNode.length === 0) {
         newData.id = '0d0'
       } else {
-        newData.id = numberList[0] + letterList[0] + (parseInt(numberList[1]) + 1)
+        newData.id = numberList[0] + 'd' + (lastNumber + 1)
       }
       obj.childNode.push(newData)
     } else {
-      var fIndex = obj.childNode.indexOf(this.searchById(id, obj))
+      var index = toolFun.getIndex(this.searchById(id, obj), obj)
+      console.log(index)
       if (obj.childNode.length === 0) {
-        newData.id = numberList[0] + letterList[0] + numberList[1] + newData.type.charAt(0) + '0'
+        newData.id = id + newData.type.charAt(0) + '0'
       } else {
-        newData.id = numberList[0] + letterList[0] + numberList[1] + letterList[1] + (parseInt(numberList[1]) + 1)
+        newData.id = id + newData.type.charAt(0) + (lastNumber + 1)
       }
-      obj.childNode[fIndex].childNode.push(newData)
+      obj.childNode[index].childNode.push(newData)
     }
     return obj
   },
@@ -136,8 +145,8 @@ var methods = {
    */
   updateById: function (updateData, obj) {
     // 解析id number为数字，letter为字母
-    var numberList = obj.id.match(/\d+/g)
-    var letterList = obj.id.match(/[A-z]+/g)
+    var numberList = updateData.id.match(/\d+/g)
+    var letterList = updateData.id.match(/[A-z]+/g)
     var id = updateData.id
     var faindex = 0
     var upindex = 0
@@ -147,7 +156,7 @@ var methods = {
     if (numberList.length === 2) {
       for (goalObj of obj.childNode) {
         if (goalObj.id === id) {
-          upindex = obj.childNode.indexOf(goalObj)
+          upindex = toolFun.getIndex(updateData, obj)
           obj.childNode[upindex] = updateData
         }
       }
@@ -161,11 +170,11 @@ var methods = {
       // 根据id取得对象
       for (fObj of obj.childNode) {
         if (fObj.id === fId) {
-          faindex = obj.childNode.indexOf(goalObj)
+          faindex = toolFun.getIndex(fObj, obj)
           for (goalObj of fObj.childNode) {
             if (goalObj.id === id) {
-              upindex = obj.childNode[faindex].indexOf(goalObj)
-              obj.childNode[faindex][upindex] = updateData
+              upindex = toolFun.getIndex(goalObj, fObj)
+              obj.childNode[faindex].childNode[upindex] = updateData
             }
           }
         }

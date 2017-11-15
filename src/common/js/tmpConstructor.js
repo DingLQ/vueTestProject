@@ -18,13 +18,13 @@ var baseClassConstructor = function (baseData) {
   data.getElement = methods.searchById
 
   // 给基础对象添加设置元素的方法
-  data.setElement = methods.setElement
+  data.setElement = methods.updateById
 
   // 给基础对象添加删除元素的方法
-  data.delElement = methods.delElement
+  data.delElement = methods.deleteById
 
   // 给基础对象增加增加元素的方法
-  data.addElement = methods.addElement
+  data.addElement = methods.addById
 
   return data
 }
