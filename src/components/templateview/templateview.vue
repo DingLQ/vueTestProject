@@ -1,6 +1,6 @@
 <template>
   <div class="templateview">
-    <div-element v-for="item in dataJson.childNode" :key="item.id" :styleList="item.styleList" :classList="item.classList" :value="item.value"></div-element>
+    <div-element v-for="item in dataJson.childNode" :key="item.id" :styleList="item.styleList" :classList="item.classList" :value="item.value" :childNode="item.childNode"></div-element>
   </div>
 </template>
 

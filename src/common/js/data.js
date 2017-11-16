@@ -1,7 +1,7 @@
 // 用作数据处理
 
 var main = {
-  id: 0,
+  id: '0',
   name: 'main',
   type: 'main',
   value: '',
@@ -13,10 +13,10 @@ var main = {
 }
 
 var divElement = {
-  id: 1,
+  id: '0d0',
   name: 'div',
   type: 'div',
-  value: '1111',
+  value: '',
   styleList: {
     background: 'red',
     width: '100%',
@@ -25,13 +25,27 @@ var divElement = {
   classList: {
     test: true
   },
-  childNode: [],
+  childNode: [
+    {
+      id: '0d0p0',
+      name: 'p',
+      type: 'p',
+      value: '1212',
+      styleList: {
+        height: '24px',
+        'line-height': '24px',
+        'font-size': '14px',
+        color: '#fff',
+        background: '#000'
+      }
+    }
+  ],
   entryPoty: {},
   ruleList: {
     height: {
       name: 'height',
       type: 'px',
-      rule: [14, 1092]
+      range: [14, 1092]
     }
   }
 }
@@ -47,5 +61,4 @@ function getData () {
 }
 
 var b = getData()
-
 export default b

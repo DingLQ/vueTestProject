@@ -1,34 +1,25 @@
-// template组装器，没有数据处理代码
+// template组装器，没有数据处理代码，目的是数据私有化
 
 // 引入初始方法和数组，组装成为一个初始对象
-var methods = require('methods.js')
-var data = require('data.js')
+import data from '@/common/js/data.js'
 
 // 包含参数和方法
 
-var obj = {
-  methods: methods,
-  data: data
-}
-
 var baseClassConstructor = function (baseData) {
   var data = {}
+  // 获取基础元素
+  data.getBaseData = function () {
+    return baseData
+  }
 
-  // 给基础对象添加获取元素的方法
-  data.getElement = methods.searchById
-
-  // 给基础对象添加设置元素的方法
-  data.setElement = methods.updateById
-
-  // 给基础对象添加删除元素的方法
-  data.delElement = methods.deleteById
-
-  // 给基础对象增加增加元素的方法
-  data.addElement = methods.addById
+  // 更改组件的值
+  data.setBaseData = function (obj) {
+    baseData = obj
+  }
 
   return data
 }
 
-var baseclass = baseClassConstructor(obj)
+var baseclass = baseClassConstructor(data)
 
-module.exports = baseclass
+export default baseclass

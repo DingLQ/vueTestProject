@@ -2,7 +2,7 @@
   <div class="header">
     <div class="info">
       <span class="logo">DTB</span>
-      <span class="title">xxxxxxxxxxxx会诊单</span>
+      <span class="title"></span>
     </div>
   </div>
 </template>
@@ -31,4 +31,5 @@ export default {
       line-height 50px
     .title
       display inline-block
+      text-align center
 </style>

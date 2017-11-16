@@ -10,6 +10,6 @@ var getIndex = function (chi, fth) {
   return -1
 }
 
-module.exports = {
+export default {
   getIndex: getIndex
 }

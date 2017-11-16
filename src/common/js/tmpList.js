@@ -2,7 +2,6 @@
 
 var tmpList = {
   main: {
-    id: '0',
     name: 'main',
     type: 'main',
     value: '',
@@ -13,7 +12,6 @@ var tmpList = {
     ruleList: []
   },
   div: {
-    id: '0d1',
     name: 'divElement',
     type: 'div',
     value: '1111',
@@ -38,4 +36,4 @@ var tmpList = {
   }
 }
 
-module.exports = tmpList
+export default tmpList

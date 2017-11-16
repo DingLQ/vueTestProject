@@ -3,7 +3,7 @@
 // description:初始版本，代码结构考虑不完善，以现在的方式，应该会比较耗资源。
 
 // 加载工具函数
-var toolFun = require('tool.js')
+var toolFun = require('@/common/js/tool.js')
 
 var methods = {
   /**
@@ -194,4 +194,4 @@ var methods = {
     return obj
   }
 }
-module.exports = methods
+export default methods

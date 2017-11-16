@@ -9,6 +9,7 @@
 import templateview from '@/components/templateview/templateview.vue'
 import toolbar from '@/components/toolbar/toolbar.vue'
 import dataObj from '@/common/js/data.js'
+import methods from '@/common/js/methods.js'
 
 export default {
   name: 'main',
@@ -18,7 +19,8 @@ export default {
       topNumber: 0,
       mainData: dataObj,
       selectRules: dataObj.childNode[0].ruleList,
-      selectData: dataObj.childNode[0].styleList
+      selectData: dataObj.childNode[0].styleList,
+      methods: methods
     }
   },
   components: {

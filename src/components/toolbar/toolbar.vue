@@ -55,13 +55,13 @@ export default {
   },
   watch: {
     height: function (val) {
-      if (val >= this.selectRules['height'].rule[1]) {
-        console.log(this.selectRules['height'].rule[1])
-        this.height = 1091
+      if (val >= this.selectRules['height'].range[1]) {
+        console.log(this.selectRules['height'].range[1])
+        this.height = this.selectRules['height'].range[1]
       }
-      if (val <= this.selectRules['height'].rule[0]) {
-        console.log(this.selectRules['height'].rule[0])
-        this.height = 14
+      if (val <= this.selectRules['height'].range[0]) {
+        console.log(this.selectRules['height'].range[0])
+        this.height = this.selectRules['height'].range[0]
       }
     }
   },
