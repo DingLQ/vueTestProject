@@ -31,6 +31,7 @@ var divElement = {
       name: 'p',
       type: 'p',
       value: '1212',
+      childNode: [],
       styleList: {
         height: '24px',
         'line-height': '24px',
@@ -52,7 +53,6 @@ var divElement = {
 
 function newElement (father, child) {
   father.childNode.push(child)
-  console.log(father)
   return father
 }
 

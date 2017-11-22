@@ -1,14 +1,16 @@
 <template>
-  <p class="pElement" :class="classList" :style="styleList" @click.stop="upId">{{value}}</p>
+  <p class="pElement" :class="classList" :style="styleList" @click.stop="changeChoose">{{value}}</p>
 </template>
 
 <script>
+import eventBus from '@/common/js/eventBus.js'
+
 export default {
   name: 'p-element',
-  props: ['styleList', 'classList', 'value', 'childNode', 'key'],
+  props: ['styleList', 'classList', 'value', 'childNode', 'id'],
   methods: {
-    upId () {
-      alert(2)
+    changeChoose () {
+      eventBus.$emit('selectChange', this.id)
     }
   }
 }
