@@ -1,6 +1,6 @@
 <template>
   <div class="main centerblock clearfix">
-   <toolbar class="tob" :class="{fly: ifFloat}" :style="{top: topNumber + 'px'}" @styleListChange = "changeTest" :selectData="selectData" :selectRules="selectRules"></toolbar>
+   <toolbar class="tob" :class="{fly: ifFloat}" :style="{top: topNumber + 'px'}" @styleListChange = "changeTest" :selectData="selectData"></toolbar>
    <tmpview class="tmp" :dataJson="mainData"></tmpview>
   </div>
 </template>
@@ -19,8 +19,9 @@ export default {
       ifFloat: false,
       topNumber: 0,
       mainData: dataObj,
-      selectRules: dataObj.childNode[0].ruleList,
-      selectData: dataObj.childNode[0].styleList,
+      selectData: {
+        id: 'null'
+      },
       methods: methods
     }
   },
@@ -39,18 +40,14 @@ export default {
     },
     changeTest (height) {
       this.mainData.childNode[0].styleList.height = height + 'px'
-    },
-    getSelect (id) {
-      console.log(this.mainData)
-      console.log(this.methods.searchById('0d0', this.mainData))
     }
   },
   mounted () {
     window.addEventListener('scroll', this.scrollWatch)
     var that = this
     eventBus.$on('selectChange', function (id) {
-      alert(id + ':theId')
-      that.getSelect(id)
+      // 选中的组件改变
+      that.selectData = that.methods.searchById(id, that.mainData)
     })
   }
 }

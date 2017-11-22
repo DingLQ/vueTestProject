@@ -1,15 +1,14 @@
-// 用作数据处理
+// 测试数据
 
 var main = {
   id: '0',
   name: 'main',
   type: 'main',
   value: '',
-  styleList: '样式列表',
-  classList: '样式类列表',
+  styleList: [],
+  classList: [],
   childNode: [],
-  entryPoty: {},
-  ruleList: []
+  entryPoty: {}
 }
 
 var divElement = {
@@ -17,11 +16,25 @@ var divElement = {
   name: 'div',
   type: 'div',
   value: '',
-  styleList: {
-    background: 'red',
-    width: '100%',
-    height: '200px'
-  },
+  styleList: [
+    {
+      name: 'height',
+      value: '200',
+      type: 'px',
+      range: [14, 1092]
+    },
+    {
+      name: 'background',
+      value: 'red',
+      type: ''
+    },
+    {
+      name: 'width',
+      value: '100',
+      type: '%',
+      disabled: 'disabled'
+    }
+  ],
   classList: {
     test: true
   },
@@ -32,23 +45,36 @@ var divElement = {
       type: 'p',
       value: '1212',
       childNode: [],
-      styleList: {
-        height: '24px',
-        'line-height': '24px',
-        'font-size': '14px',
-        color: '#fff',
-        background: '#000'
-      }
+      styleList: [
+        {
+          name: 'height',
+          value: '24',
+          type: 'px'
+        },
+        {
+          name: 'line-height',
+          value: '24',
+          type: 'px'
+        },
+        {
+          name: 'font-size',
+          value: '14',
+          type: 'px'
+        },
+        {
+          name: 'background',
+          value: '#000',
+          type: 'color'
+        },
+        {
+          name: 'color',
+          value: '#fff',
+          type: 'color'
+        }
+      ]
     }
   ],
-  entryPoty: {},
-  ruleList: {
-    height: {
-      name: 'height',
-      type: 'px',
-      range: [14, 1092]
-    }
-  }
+  entryPoty: {}
 }
 
 function newElement (father, child) {

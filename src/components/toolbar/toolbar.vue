@@ -30,11 +30,15 @@
         </div>
         <div class="form-group">
           <label for="">高度</label>
-          <input type="text" v-model="height">
+          <input type="text" v-model="e_height">
         </div>
         <div class="form-group">
           <label for="">内边距</label>
           <input type="text">
+        </div>
+        <div class="form-group">
+          <p>{{selectData.id}}</p>
+          <p>{{e_height}}</p>
         </div>
         <div><button @click="changeSubmit">修改</button></div>
 
@@ -46,22 +50,18 @@
 <script>
 export default {
   name: 'toolbar',
-  props: ['selectData', 'selectRules'],
+  props: ['selectData'],
   data () {
     return {
-      width: 100,
-      height: this.selectData.height.match(/\d+/)
+      width: 100
     }
   },
-  watch: {
-    height: function (val) {
-      if (val >= this.selectRules['height'].range[1]) {
-        console.log(this.selectRules['height'].range[1])
-        this.height = this.selectRules['height'].range[1]
-      }
-      if (val <= this.selectRules['height'].range[0]) {
-        console.log(this.selectRules['height'].range[0])
-        this.height = this.selectRules['height'].range[0]
+  computed: {
+    e_height: function () {
+      if (this.selectData.id === 'null') {
+        return 0
+      } else {
+        return this.selectData.styleList.height.match(/\d*/)[0]
       }
     }
   },
