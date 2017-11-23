@@ -1,5 +1,5 @@
 <template>
-  <div class="divElement" :class="classList" :style="styleList" @click.stop="changeChoose">
+  <div class="divElement" :class="classList" :style="getstyle" @click.stop="changeChoose">
     {{value}}
     <p-element v-for="item in childNode" :id="item.id" :key="item.id" :classList="item.classList" :styleList="item.styleList" :value="item.value"></p-element>
   </div>
@@ -12,6 +12,21 @@ import eventBus from '@/common/js/eventBus.js'
 export default {
   name: 'div-element',
   props: ['styleList', 'classList', 'value', 'childNode', 'id'],
+  computed: {
+    getstyle: function () {
+      var slist = this.styleList
+      var rObj = {}
+      var obj = {}
+      for (obj of slist) {
+        if (obj.type === 'color') {
+          rObj[obj.name] = obj.value
+        } else {
+          rObj[obj.name] = obj.value + obj.type
+        }
+      }
+      return rObj
+    }
+  },
   components: {
     pElement: pElement
   },

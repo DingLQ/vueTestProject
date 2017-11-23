@@ -19,9 +19,7 @@ export default {
       ifFloat: false,
       topNumber: 0,
       mainData: dataObj,
-      selectData: {
-        id: 'null'
-      },
+      selectData: dataObj,
       methods: methods
     }
   },
@@ -38,9 +36,7 @@ export default {
         this.ifFloat = false
       }
     },
-    changeTest (height) {
-      this.mainData.childNode[0].styleList.height = height + 'px'
-    }
+    changeTest (height) {}
   },
   mounted () {
     window.addEventListener('scroll', this.scrollWatch)
@@ -48,6 +44,7 @@ export default {
     eventBus.$on('selectChange', function (id) {
       // 选中的组件改变
       that.selectData = that.methods.searchById(id, that.mainData)
+      console.log(that.selectData)
     })
   }
 }

@@ -23,26 +23,10 @@
     </div>
     <div class="list">
       <h2>组件属性</h2>
+      <p>{{selectData.id}}</p>
       <div class="attributeItem">
-        <div class="form-group">
-          <label for="">宽度</label>
-          <input type="text" v-model="width">
-        </div>
-        <div class="form-group">
-          <label for="">高度</label>
-          <input type="text" v-model="e_height">
-        </div>
-        <div class="form-group">
-          <label for="">内边距</label>
-          <input type="text">
-        </div>
-        <div class="form-group">
-          <p>{{selectData.id}}</p>
-          <p>{{e_height}}</p>
-        </div>
-        <div><button @click="changeSubmit">修改</button></div>
-
       </div>
+        <div><button @click="changeSubmit">修改</button></div>
     </div>
   </div>
 </template>
@@ -53,22 +37,21 @@ export default {
   props: ['selectData'],
   data () {
     return {
-      width: 100
-    }
-  },
-  computed: {
-    e_height: function () {
-      if (this.selectData.id === 'null') {
-        return 0
-      } else {
-        return this.selectData.styleList.height.match(/\d*/)[0]
+      sourceData: this.selectData,
+      dataStyleList: this.selectData.styleList,
+      testData: {
+        name: 'height',
+        value: '200',
+        type: 'px',
+        range: [14, 1092],
+        disabled: false
       }
     }
   },
   methods: {
     changeSubmit () {
       console.log('data' + this.$data)
-      this.$emit('styleListChange', this.height)
+      this.$emit('styleListChange', this.dataStyleList)
     }
   }
 }
@@ -117,9 +100,11 @@ export default {
           background #37C5CE
     .attributeItem
       font-size 0
+      button
+        font-size 12px
       .form-group
-        display inline-block
         width 50%
+        display inline-block
         margin 6px 0
         label
           display inline-block
@@ -130,11 +115,14 @@ export default {
           text-align center
         input
           display inline-block
-          width 50%
+          width 40%
           font-size 12px
           height 20px
           line-height 20px
-      p
-        font-size 12px
-        text-align center
+        span
+          display inline-block
+          width 10%
+          font-size 12px
+          height 20px
+          line-height 20px
 </style>

@@ -47,6 +47,12 @@ var divElement = {
       childNode: [],
       styleList: [
         {
+          name: 'width',
+          value: '100',
+          type: '%',
+          disabled: 'disabled'
+        },
+        {
           name: 'height',
           value: '24',
           type: 'px'
