@@ -25,6 +25,36 @@
       <h2>组件属性</h2>
       <p>{{selectData.id}}</p>
       <div class="attributeItem">
+        <div class="form-group">
+          <label for="">宽度</label>
+          <input type="text" v-model="sswidth.value" :disabled="sswidth.disabled">
+          <span v-if="sswidth.type !== 'color'"></span>
+        </div>
+        <div class="form-group">
+          <label for="">高度</label>
+          <input type="text" v-model="ssheight.value" :disabled="ssheight.disabled">
+          <span v-if="ssheight.type !== 'color'"></span>
+        </div>
+        <div class="form-group">
+          <label for="">大小</label>
+          <input type="text" v-model="ssfontsize.value" :disabled="ssfontsize.disabled">
+          <span v-if="ssfontsize.type !== 'color'"></span>
+        </div>
+        <div class="form-group">
+          <label for="">行高</label>
+          <input type="text" v-model="sslineheight.value" :disabled="sslineheight.disabled">
+          <span v-if="sslineheight.type !== 'color'"></span>
+        </div>
+        <div class="form-group">
+          <label for="">颜色</label>
+          <input type="text" v-model="sscolor.value" :disabled="sscolor.disabled">
+          <span v-if="sscolor.type !== 'color'"></span>
+        </div>
+        <div class="form-group">
+          <label for="">背景</label>
+          <input type="text" v-model="ssbackground.value" :disabled="ssbackground.disabled">
+          <span v-if="ssbackground.type !== 'color'"></span>
+        </div>
       </div>
         <div><button @click="changeSubmit">修改</button></div>
     </div>
@@ -37,21 +67,39 @@ export default {
   props: ['selectData'],
   data () {
     return {
-      sourceData: this.selectData,
-      dataStyleList: this.selectData.styleList,
-      testData: {
-        name: 'height',
-        value: '200',
-        type: 'px',
-        range: [14, 1092],
-        disabled: false
-      }
+      dataStyleList: {}
+    }
+  },
+  computed: {
+    'sswidth' () {
+      return this.searchStyle('width', this.selectData.styleList)
+    },
+    'ssheight' () {
+      return this.searchStyle('height', this.selectData.styleList)
+    },
+    'ssfontsize' () {
+      return this.searchStyle('font-size', this.selectData.styleList)
+    },
+    'sslineheight' () {
+      return this.searchStyle('line-height', this.selectData.styleList)
+    },
+    'sscolor' () {
+      return this.searchStyle('color', this.selectData.styleList)
+    },
+    'ssbackground' () {
+      return this.searchStyle('background', this.selectData.styleList)
     }
   },
   methods: {
     changeSubmit () {
-      console.log('data' + this.$data)
       this.$emit('styleListChange', this.dataStyleList)
+    },
+    searchStyle (name, list) {
+      var obj = {value: 'null'}
+      for (obj of list) {
+        if (obj.name === name) return obj
+      }
+      return obj
     }
   }
 }

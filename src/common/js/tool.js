@@ -10,6 +10,21 @@ var getIndex = function (chi, fth) {
   return -1
 }
 
+// 获取样式列表
+var getStyleList = function (dataList) {
+  var rObj = {}
+  var obj = {}
+  for (obj of dataList) {
+    if (obj.type === 'color') {
+      rObj[obj.name] = obj.value
+    } else {
+      rObj[obj.name] = obj.value + obj.type
+    }
+  }
+  return rObj
+}
+
 export default {
-  getIndex: getIndex
+  getIndex: getIndex,
+  getStyleList: getStyleList
 }

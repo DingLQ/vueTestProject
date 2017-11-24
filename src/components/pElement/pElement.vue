@@ -4,23 +4,14 @@
 
 <script>
 import eventBus from '@/common/js/eventBus.js'
+import tool from '@/common/js/tool.js'
 
 export default {
   name: 'p-element',
   props: ['styleList', 'classList', 'value', 'childNode', 'id'],
   computed: {
     getstyle: function () {
-      var slist = this.styleList
-      var rObj = {}
-      var obj = {}
-      for (obj of slist) {
-        if (obj.type === 'color') {
-          rObj[obj.name] = obj.value
-        } else {
-          rObj[obj.name] = obj.value + obj.type
-        }
-      }
-      return rObj
+      return tool.getStyleList(this.styleList)
     }
   },
   methods: {
