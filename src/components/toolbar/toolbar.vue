@@ -32,7 +32,7 @@
         </div>
         <div class="form-group">
           <label for="">高度</label>
-          <input type="text" v-model="ssheight.value" :disabled="ssheight.disabled">
+          <input type="text" v-model.lazy="ssheight.value" :disabled="ssheight.disabled">
           <span v-if="ssheight.type !== 'color'"></span>
         </div>
         <div class="form-group">
@@ -56,7 +56,7 @@
           <span v-if="ssbackground.type !== 'color'"></span>
         </div>
       </div>
-        <div><button @click="changeSubmit">修改</button></div>
+        <div><button>修改</button></div>
     </div>
   </div>
 </template>
@@ -67,7 +67,7 @@ export default {
   props: ['selectData'],
   data () {
     return {
-      dataStyleList: {}
+      datas: this.selectData
     }
   },
   computed: {
@@ -91,9 +91,6 @@ export default {
     }
   },
   methods: {
-    changeSubmit () {
-      this.$emit('styleListChange', this.dataStyleList)
-    },
     searchStyle (name, list) {
       var obj = {value: 'null'}
       for (obj of list) {
