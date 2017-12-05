@@ -1,6 +1,6 @@
 <template>
   <div class="main centerblock clearfix">
-   <toolbar class="tob" :class="{fly: ifFloat}" :style="{top: topNumber + 'px'}" @styleListChange = "changeTest" :selectData="selectData"></toolbar>
+   <toolbar class="tob" :class="{fly: ifFloat}" :style="{top: topNumber + 'px'}" @elementAdd = "changeTest" :selectData="selectData"></toolbar>
    <tmpview class="tmp" :dataJson="mainData"></tmpview>
   </div>
 </template>
@@ -20,7 +20,7 @@ export default {
       topNumber: 0,
       mainData: dataObj,
       selectData: dataObj,
-      methods: methods
+      methodsL: methods
     }
   },
   components: {
@@ -36,14 +36,60 @@ export default {
         this.ifFloat = false
       }
     },
-    changeTest (height) {}
+    changeTest (id, element) {
+      var testData = {
+        name: 'p',
+        type: 'p',
+        value: 'add test',
+        childNode: [],
+        styleList: [
+          {
+            name: 'width',
+            value: '100',
+            type: '%',
+            disabled: 'disabled'
+          },
+          {
+            name: 'height',
+            value: '24',
+            disabled: false,
+            type: 'px'
+          },
+          {
+            name: 'line-height',
+            value: '24',
+            disabled: 'false',
+            type: 'px'
+          },
+          {
+            name: 'font-size',
+            value: '14',
+            disabled: 'false',
+            type: 'px'
+          },
+          {
+            name: 'background',
+            value: '#000',
+            disabled: 'false',
+            type: 'color'
+          },
+          {
+            name: 'color',
+            value: '#fff',
+            disabled: 'false',
+            type: 'color'
+          }
+        ]
+      }
+      this.methodsL.addById(id, testData, this.mainData)
+    }
   },
   mounted () {
     window.addEventListener('scroll', this.scrollWatch)
     var that = this
     eventBus.$on('selectChange', function (id) {
       // 选中的组件改变
-      that.selectData = that.methods.searchById(id, that.mainData)
+      that.selectData = that.methodsL.searchById(id, that.mainData)
       console.log(that.selectData)
     })
   }

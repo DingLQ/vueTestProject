@@ -5,7 +5,7 @@
       <h2>组件列表</h2>
       <div class="mouduleItem">
         <button>div容器</button>
-        <button>p标签</button>
+        <button @click="addPTest">p标签</button>
       </div>
       <div class="mouduleItem">
         <button>span标签</button>
@@ -97,6 +97,9 @@ export default {
         if (obj.name === name) return obj
       }
       return obj
+    },
+    addPTest () {
+      this.$emit('elementAdd', this.selectData.id, 'p')
     }
   }
 }
