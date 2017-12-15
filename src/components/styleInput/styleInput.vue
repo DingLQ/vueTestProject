@@ -1,9 +1,13 @@
 <template>
   <div class="form-group">
-    <label for="">{{name}}</label>
-    <input type="text" v-model="value" :disabled="disabled">
+    <label for="">{ {name} }</label>
+    <input
+      type="text"
+      v-model="value"
+      disabled="disabled">
     <span v-if="type !== 'color'">{{type}}</span>
   </div>
+
 </template>
 
 <script>
